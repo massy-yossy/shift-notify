@@ -1,0 +1,25 @@
+name: LINE Messaging API Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install libraries
+        run: pip install requests
+
+      - name: Run script
+        env:
+          LINE_CHANNEL_TOKEN: ${{ secrets.UHEBH46clWWCzcKGu/NMHuqEOktnxzHdG/ABvj7xZYgUm5Oe/2kTKVhVuvy82P7eE97owV3mLhaFBw5vqp0BYCRkffDVaU/pLu/zENvXiDMhfMWPPD0KAMeWtIjfJeIZ09aK28G/Uy30cAn9suzvFQdB04t89/1O/w1cDnyilFU= }}
+          LINE_USER_ID: ${{ secrets.Ubaa71a296fd5f09b4488822497a3d1fb }}
+        run: python line_test.py
