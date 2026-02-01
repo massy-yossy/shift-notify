@@ -23,3 +23,7 @@ jobs:
           LINE_CHANNEL_TOKEN: ${{ secrets.LINE_CHANNEL_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
         run: python line_test.py
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/10 * * * *"
