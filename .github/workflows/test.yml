@@ -1,16 +1,17 @@
-name: LINE Messaging API Test
+name: LINE Notify Test
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:   # 手動実行
+  schedule:
+    - cron: "*/10 * * * *"
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: Python setup
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -20,10 +21,5 @@ jobs:
 
       - name: Run script
         env:
-          LINE_CHANNEL_TOKEN: ${{ secrets.LINE_CHANNEL_TOKEN }}
-          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+          LINE_TOKEN: ${{ secrets.LINE_TOKEN }}
         run: python line_test.py
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: "*/10 * * * *"
